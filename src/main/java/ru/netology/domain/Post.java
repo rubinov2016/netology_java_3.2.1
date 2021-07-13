@@ -1,64 +1,164 @@
 package ru.netology.domain;
+//TODO
+//В первом задании у вас в итоге должна получиться структура классов, соответствующая структуре ответа вк
+// - классы для информации о лайках/комментах/… и класс поста, у которого будут в том числе поля с типами ваших классов
+// (например, private LikesInfo likesInfo;).
 
+//о ссылке описано какие данные и каких типов внутри себя содержит объект, хранящий информацию о посте; обратите внимание,
+// что под integer они имеют целочисленный тип (т.е. нам в джаве надо указывать int),
+// а там где у них указано object нам надо создавать  отдельные классы, описывающие структуру этих объектов,
+// а в классе поста хранить поля с типами этих классов (непонятно? см. подсказку ниже).
+//
 public class Post {
-    long postID;        //идентификатор поста верхнего уровня   = id
-    long parentID;      //идентификатор родительского поста, если это комментарий к другому посту =reply_owner_id
-    long shareID;       //идентификатор родительского поста, если этот пост был добавлен по кнопке Share
-    long authorID;      //идентификатор автора      = from_id
-    long communityID;   //идентификатор сообщества, где опубликован пост    = owner_id
-    String dateTime;    //время создания        = date
-    String postSubject; //заголовок             = text
-    String postBody;    //текст  в формает HTML
-    int viewCounter;    //количество просмотров поств
-    int likeCounter;    //количество людей, которые нажали Like  = likes.count
-    int commentCounter;     //количество постов, которые ответили на этот пост =comments.count
-    int shareCounter;      //количество постов, которые зашарили этот пост  =reposts.count
-    int rating;             //внутренний рейтинг поста для отображения самых интересных
-    int editVersion;        //номер для хранения промежуточных версий постов, которые потом были отредактирвоаны или удалены
+    private long postID;        //идентификатор поста верхнего уровня   = id
+    private long parentID;      //идентификатор родительского поста, если это комментарий к другому посту =reply_owner_id
+    private long shareID;       //идентификатор родительского поста, если этот пост был добавлен по кнопке Share
+    private long authorID;      //идентификатор автора      = from_id
+    private long communityID;   //идентификатор сообщества, где опубликован пост    = owner_id
+    private String dateTime;    //время создания        = date
+    private String postSubject; //заголовок             = text
+    private String postBody;    //текст  в формает HTML
+
+    //objects
+    private Comments comments;
+    private Likes likes;
+    private Reposts reposts;
+    private Geo geo;
+    private Post_source post_source;
 
     //поля, которые я добавил
-    int friendsAccess;       //поле для хранения прав доступа        ~~= friends_only
-    int isPinned;            // = is_pinned
-    int isAds;               // = marked_as_ads
-    int geoID;               //Информация о геоположении
+    private int friendsAccess;       //поле для хранения прав доступа        ~~= friends_only
+    private int isPinned;            // = is_pinned
+    private int isAds;               // = marked_as_ads
 
-    public void setDateTime(long postID) {
+
+    public Post_source getPost_source() {
+        return post_source;
     }
-    public void getDateTime(long postID) {
+
+    public void setPost_source(Post_source post_source) {
+        this.post_source = post_source;
     }
-    public void setPostSubject(long postID) {
+
+    public long getPostID() {
+        return postID;
     }
-    public void getPostSubject(long postID) {
+
+    public void setPostID(long postID) {
+        this.postID = postID;
     }
-    public void setPostBody(long postID) {
+
+    public long getParentID() {
+        return parentID;
     }
-    public void getPostBody(long postID) {
+
+    public void setParentID(long parentID) {
+        this.parentID = parentID;
     }
-    public void setViewCounter(long postID) {
+
+    public long getShareID() {
+        return shareID;
     }
-    public void getViewCounter(long postID) {
+
+    public void setShareID(long shareID) {
+        this.shareID = shareID;
     }
-    public void setLikeCounter(long postID) {
+
+    public long getAuthorID() {
+        return authorID;
     }
-    public void getLikeCounter(long postID) {
+
+    public void setAuthorID(long authorID) {
+        this.authorID = authorID;
     }
-    public void setCommentCounter(long postID) {
+
+    public long getCommunityID() {
+        return communityID;
     }
-    public void getCommentCounter(long postID) {
+
+    public void setCommunityID(long communityID) {
+        this.communityID = communityID;
     }
-    public void setShareCounter(long postID) {
+
+    public String getDateTime() {
+        return dateTime;
     }
-    public void getShareCounter(long postID) {
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
-    public void setRating(long postID) {
+
+    public String getPostSubject() {
+        return postSubject;
     }
-    public void getRating(long postID) {
+
+    public void setPostSubject(String postSubject) {
+        this.postSubject = postSubject;
     }
-    public void setEditVersion(long postID) {
+
+    public String getPostBody() {
+        return postBody;
     }
-    public void getEditVersion(long postID) {
+
+    public void setPostBody(String postBody) {
+        this.postBody = postBody;
     }
-    
+
+    public Comments getComments() {
+        return comments;
+    }
+
+    public void setComments(Comments comments) {
+        this.comments = comments;
+    }
+
+    public Likes getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Likes likes) {
+        this.likes = likes;
+    }
+
+    public Reposts getReposts() {
+        return reposts;
+    }
+
+    public void setReposts(Reposts reposts) {
+        this.reposts = reposts;
+    }
+
+    public Geo getGeo() {
+        return geo;
+    }
+
+    public void setGeo(Geo geo) {
+        this.geo = geo;
+    }
+
+    public int getFriendsAccess() {
+        return friendsAccess;
+    }
+
+    public void setFriendsAccess(int friendsAccess) {
+        this.friendsAccess = friendsAccess;
+    }
+
+    public int getIsPinned() {
+        return isPinned;
+    }
+
+    public void setIsPinned(int isPinned) {
+        this.isPinned = isPinned;
+    }
+
+    public int getIsAds() {
+        return isAds;
+    }
+
+    public void setIsAds(int isAds) {
+        this.isAds = isAds;
+    }
 }
 
 // какие поля у меня отсутствовали
